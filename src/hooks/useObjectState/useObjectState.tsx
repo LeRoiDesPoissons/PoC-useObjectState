@@ -23,7 +23,7 @@ type Options<T extends Record<string, unknown>> = {
     validationFromStart?: boolean
 };
 
-function MapInitToState<T extends Record<string, string | number | boolean>>(init: T): StateType<T> {
+function MapInitToState<T extends Record<string, unknown>>(init: T): StateType<T> {
     return Object.entries(init).reduce((accumulator, [key, value]) => {
         accumulator[key as keyof T] = {
             value: value as T[keyof T],
@@ -47,7 +47,7 @@ function MapInitToState<T extends Record<string, string | number | boolean>>(ini
  * - isPristine, if true, the values have not been changed and validation has not been run
  * - hasErrors, comfort property indicating if the object validators have returned errors or not
  */
-export function useObjectState<T extends Record<string, string | number | boolean>>(init: T, options: Options<T> = {}) {
+export function useObjectState<T extends Record<string, unknown>>(init: T, options: Options<T> = {}) {
     const {
         htmlValidation = false,
         validationFromStart = false,
