@@ -54,9 +54,10 @@ export function useObjectState<T extends Record<string, unknown>>(init: T, optio
         validators = {},
     } = options;
 
+    const initRef = useRef(init);
     const firstRender = useRef(!validationFromStart);
 
-    const [state, dispatch] = useReducer(reducer, init, MapInitToState);
+    const [state, dispatch] = useReducer(reducer, initRef.current, MapInitToState);
 
     function update<Key extends keyof T = keyof T>(start: ChangeEvent<Input<T, Key>>): void
     function update<Key extends keyof T = keyof T>(start: Key): (arg: T[Key]) => void
@@ -155,13 +156,15 @@ export function useObjectState<T extends Record<string, unknown>>(init: T, optio
         }
     }
 
-    function reset() {
+    function reset(resetPristine = true) {
+        if (resetPristine) {
+            firstRender.current = true;
+        }
+
         dispatch({
             key: 'reset',
-            payload: MapInitToState(init)
+            payload: MapInitToState(initRef.current)
         });
-
-        firstRender.current = true;
     };
 
     const { values, errors } = Object.entries(state).reduce(
