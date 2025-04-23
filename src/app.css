@@ -1,0 +1,15 @@
+nav {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
