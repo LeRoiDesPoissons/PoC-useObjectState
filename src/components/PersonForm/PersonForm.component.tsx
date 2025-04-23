@@ -2,6 +2,7 @@ import { ChangeEventHandler, FC } from "react";
 import { PersonFormKeys } from "./personFormKeys.enum";
 import { PersonFormShape } from "./personFormShape.type";
 import { useObjectState } from "../../hooks";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 
 export const PersonForm: FC = () => {
   const {
@@ -27,6 +28,8 @@ export const PersonForm: FC = () => {
       htmlValidation: true,
     }
   );
+
+  useDocumentTitle('Person form');
 
   const setCorrectName = () => {
     update(PersonFormKeys.NAME)('Bob')
@@ -92,7 +95,7 @@ export const PersonForm: FC = () => {
           onChange={updateIsRealPerson}
         />
       </label>
-      <button onClick={reset}>Reset</button>
+      <button onClick={() => reset()}>Reset</button>
     </>
   )
 }

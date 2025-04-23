@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 import { useObjectState } from "../../hooks";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 
 export const DataLoader: FC = () => {
     const {
@@ -10,6 +11,8 @@ export const DataLoader: FC = () => {
         json: null,
         anotherJson: null
     });
+
+    useDocumentTitle('Data loader');
 
     useEffect(() => {
         const timeout = setTimeout(() => {

@@ -7,13 +7,13 @@ export const App: FC = () => {
   return (
     <>
       <nav>
-        <NavLink to="/" end>
+        <NavLink to="/">
           None
         </NavLink>
-        <NavLink to="/person-form" end>
+        <NavLink to="/person-form">
           Person form
         </NavLink>
-        <NavLink to="/data-loader" end>
+        <NavLink to="/data-loader">
           Data loader
         </NavLink>
       </nav>
